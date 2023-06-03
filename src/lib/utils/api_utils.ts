@@ -16,6 +16,8 @@ export async function fetchAppState(): Promise<IAppState> {
 			webcam_infos: [],
 			is_camera_calibrated: false,
 			is_camera_calibrating: false,
+			calibrate_progress: 0,
+			view_dimension: '2d',
 			get_started_webcam_infos: () => []
 		};
 	}
