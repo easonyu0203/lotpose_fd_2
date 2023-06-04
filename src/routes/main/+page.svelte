@@ -1,5 +1,6 @@
 <script lang="ts">
 	import ControlPanel from '$lib/components/ControlPanel.svelte';
+	import ThreeView from '$lib/components/ThreeView.svelte';
 	import VideoStreamPanel from '$lib/components/VideoStreamPanel.svelte';
 	import { appState } from '$lib/stores/appStateStore';
 	import { AppShell } from '@skeletonlabs/skeleton';
@@ -10,6 +11,6 @@
 	{#if $appState.view_dimension == '2d'}
 		<VideoStreamPanel />
 	{:else if $appState.view_dimension == '3d'}
-		<div>3d view</div>
+		<ThreeView />
 	{/if}
 </AppShell>
