@@ -31,7 +31,7 @@
 	}
 
 	$: {
-		if ($appState.webcam_stared) {
+		if ($appState.webcam_stared && $appState.stared_device_indices.length > 1) {
 			fetchData();
 		}
 	}
@@ -140,10 +140,15 @@
 		controls.update();
 
 		function animate() {
-			// update shpere position and opacity
+			const damping = 0.2;
+
 			for (let i = 0; i < 33; i++) {
 				if (landmark) {
-					spheres[i].position.set(landmark[i][0], landmark[i][1], 0);
+					// Create a new THREE.Vector3 for the target position
+					const targetPosition = new THREE.Vector3(landmark[i][0], landmark[i][1], landmark[i][2]);
+					// Interpolate from the current position towards the target position
+					spheres[i].position.lerp(targetPosition, damping);
+
 					spheres[i].material.opacity = landmark[i][3] > 0.6 ? landmark[i][3] : 0;
 				} else {
 					spheres[i].material.opacity = 0;
